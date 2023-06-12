@@ -1,110 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
-
- <div id="app">
-<div :id="customId">v-bind</div>
-<button :disabled="isBtnDisabled">按鈕</button>
-
-<div>
-    表單綁定
-    <input type="text" placeholder="edit me" v-model="message">
-    <p>Message is {{ message}}</p>
-
-</div>
-
-<div>
-    選擇框<br>
-    <input type="radio"  id="one" value="1" v-model="picked">
-    <label for="one">One</label>
-    <br>
-    <input type="radio"  id="two" value="2" v-model="picked">
-    <label for="two">Two</label>
-    <br>
-    <span> Picked value:{{picked}}</span>
-</div>
-<div>
-    checkbox<br>
-    <input type="checkbox"  id="A" value="A" v-model="checkedVal">
-    <label for="A">A</label>
-    <br>
-    <input type="checkbox"  id="B" value="B" v-model="checkedVal">
-    <label for="B">B</label>
-    <br>
-    <input type="checkbox"  id="C" value="C" v-model="checkedVal">
-    <label for="C">C</label>
-    <br>
-    <input type="checkbox"  id="D" value="D" v-model="checkedVal">
-    <label for="D">D</label>
-    <br>
-    <input type="checkbox"  id="E" value="E" v-model="checkedVal">
-    <label for="E">E</label>
-    <br>
-    <span> Checked value:{{checkedVal}}</span>
-</div>
-
-<div>
-    checkbox true false<br>
-    <input type="checkbox"  id="checkbox" v-model="isChecked">
-    <label for="checkbox">status:{{isChecked}}</label>
-   </div>
-
-   <div>
-    select<br>
-     <select name="" id="" v-model="selected">
-         <option value="" disabled>請選擇</option>
-         <option >台北市</option>
-         <option >新北市</option>
-         <option >台中市</option>
-     </select>
-    <p> Selected : {{ selected || '未選擇' }}</p>
- </div>
-
-
- <div>
-    <p>input lazy :
-        input事件改為監聽change事件</p>
-
-    <input type="text" v-model.lazy="msgLazy">
-    <p>Input with .Lazy :  {{ msgLazy }}</p>
- </div>
-
-</div>
-
-
-
-
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-<script>
-//   const vm = Vue.createApp({
-
-
-//   });
-
-//   vm.mount('#app');
-
-Vue.createApp({
-data (){
-    return { 
-        customId : 'item-id-1',
-        isBtnDisabled:true,
-        message :'Hey',
-        picked: 1,
-        checkedVal : [],
-        isChecked : false,
-        selected: '',
-        msgLazy: 'msgLazy'
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    .error {
+      border: red solid 1px;
+      color: red;
     }
-},
+  </style>
+  <body>
+    <div id="app">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <div :id="customId">v-bind</div>
+              <button :disabled="isBtnDisabled">按鈕</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                表單綁定
+                <input type="text" placeholder="edit me" v-model="message" />
+                <p>Message is {{ message}}</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                選擇框<br />
+                <input type="radio" id="one" value="1" v-model="picked" />
+                <label for="one">One</label>
+                <br />
+                <input type="radio" id="two" value="2" v-model="picked" />
+                <label for="two">Two</label>
+                <br />
+                <span> Picked value:{{picked}}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                checkbox<br />
+                <input type="checkbox" id="A" value="A" v-model="checkedVal" />
+                <label for="A">A</label>
+                <br />
+                <input type="checkbox" id="B" value="B" v-model="checkedVal" />
+                <label for="B">B</label>
+                <br />
+                <input type="checkbox" id="C" value="C" v-model="checkedVal" />
+                <label for="C">C</label>
+                <br />
+                <input type="checkbox" id="D" value="D" v-model="checkedVal" />
+                <label for="D">D</label>
+                <br />
+                <input type="checkbox" id="E" value="E" v-model="checkedVal" />
+                <label for="E">E</label>
+                <br />
+                <span> Checked value:{{checkedVal}}</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                checkbox true false<br />
+                <input type="checkbox" id="checkbox" v-model="isChecked" />
+                <label for="checkbox">status:{{isChecked}}</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                select<br />
+                <select name="" id="" v-model="selected">
+                  <option value="" disabled>請選擇</option>
+                  <option>台北市</option>
+                  <option>新北市</option>
+                  <option>台中市</option>
+                </select>
+                <p>Selected : {{ selected || '未選擇' }}</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <p>input lazy : input事件改為監聽change事件</p>
+                <input type="text" v-model.lazy="msgLazy" />
+                <p>Input with .Lazy : {{ msgLazy }}</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <p>input number : input 強制數字轉型</p>
+                <input type="text" v-model.number="num1" />
+                +
+                <input type="text" v-model.number="num2" />
+                = {{ sum }}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                <p>input trim : input 過濾空白字元</p>
+                <input type="text" v-model.trim="msgTrim" /> <br />
+                過濾空白字元 = {{ msgTrim }}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                :class 樣式綁定
+                <input
+                  type="text"
+                  v-model.trim="msgTrim"
+                  :class="{ 'error': msgTrim.length  > 10 }"
+                />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div>
+                :style 樣式綁定
+                <input type="text" v-model.trim="msgTrim" :style="msgStyle" />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-}).mount('#app');
-</script>
-</body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+      //   const vm = Vue.createApp({
+
+      //   });
+
+      //   vm.mount('#app');
+
+      Vue.createApp({
+        data() {
+          return {
+            customId: "item-id-1",
+            isBtnDisabled: true,
+            message: "Hey",
+            picked: 1,
+            checkedVal: [],
+            isChecked: false,
+            selected: "",
+            msgLazy: "msgLazy",
+            num1: 0,
+            num2: 0,
+            msgTrim: "",
+          };
+        },
+        computed: {
+          sum() {
+            return this.num1 + this.num2;
+          },
+          isValid() {
+            return this.msgTrim.length <= 10;
+          },
+          msgStyle() {
+            return {
+              border: this.isValid ? "" : "red solid 1px",
+              color: this.isValid ? "" : "red",
+            };
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>

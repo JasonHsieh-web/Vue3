@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <div>
+    <h2>v-on</h2>
+    <h3>v-on:事件名稱=""  or @事件名稱=""
+    </h3>
+    <p>
+        count : {{ count }}
+    </p>
+    <!-- <button @click="count++">Plus</button> -->
+    <button @click="plus">Plus</button>
+</div>
+    <div>
+        <h2>v-on若無指定參數，預設帶入event物件做完參數傳入</h2>
+        <button @click="showEvent">Click</button>
+    </div>
+    <div>
+        <h2>若methods須帶入參數，可指定傳入$event來指定event物件</h2>
+        <button @click="showEventByArg(amount,$event)">Click</button>
+
+    </div>
+    <div>
+        事件通用型修飾子
+        <ul>
+            <li>.stop</li>
+            <li>.prevent</li>
+            <li>.capture</li>
+            <li>.self</li>
+            <li>.once</li>
+            <li>.passive</li>
+        </ul>
+        <h2>.stop == e.stopPropagation() 阻擋事件冒泡 :從啟動元素節點開始，往上傳遞直到根節點document</h2>
+        <h2>.prevent == e.preventDefault() 阻擋預設行為</h2>
+        <h2>.capture 指定事件已捕獲的形式觸發 :由上往下傳遞</h2>
+        <h2>.self 只會觸發元素自己的事件型為，由子層元素傳遞來的事件則不會觸發 ex:燈箱</h2>
+        <h2>.once 讓指定的事件只會觸發一次</h2>
+        <!-- <div class="Outer" @click="alert('Outer')">
+            <span>Outer</span>
+            <div class="inner" @click.stop="alert('Inner')">Inner</div>
+        </div> -->
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+        Vue.createApp({
+            data (){
+                return{
+                    count : 0,
+                    amount:0
+                };
+            },
+            methods: {
+                plus(){
+                    this.count++;
+                },
+                showEvent(e){
+                    console.log(e.target.tagName);
+                },
+                showEventByArg(amount,event){
+                    console.log(event.target.tagName);
+                            this.count += amount;
+                }
+            },
+        }).mount("#app");
+    </script>
+</body>
+</html>
